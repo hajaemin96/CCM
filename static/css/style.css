@@ -1,0 +1,60 @@
+.jumbotron {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+    background-color: #fff;
+  }
+  
+#editor {
+    height: 300px;
+    width: 90%;
+    margin: 20px;
+    position: relative;
+}
+
+.input-append {
+    margin-left: 20px;
+}
+
+#error {
+    color: red;
+    font-weight: 800;
+    width: 220px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.no-bottom-margin {
+    margin-bottom: 0px;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.inline-header {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    vertical-align: bottom;
+}
+
+.indent-link {
+    margin-right: 20px;
+}
+
+tr.tr-result:hover {
+    background-color: #e5e5e5;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
