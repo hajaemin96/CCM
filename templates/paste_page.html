@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form name="code_form" action="/checkresult" method="POST">
+    <div class="span12">
+        <label for="code">
+            <input type="hidden" id="code" name="code" value="">
+        </label>
+        <pre id="editor" style="padding: 0px;"></pre>
+        <script src="/static/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            var editor = ace.edit("editor");
+            var textarea = document.getElementById('code');
+            editor.setTheme("ace/theme/solarized_light");
+            editor.getSession().setMode("ace/mode/python");
+            var codeSubmit = function () {
+                textarea.value = editor.getSession().getValue();
+                document.forms['code_form'].submit();
+            }
+        </script>
+        <button type="submit" class="btn span3" onclick="codeSubmit()">코드 검사</button>
+    </div>
+</form>
+
+{% endblock %}
