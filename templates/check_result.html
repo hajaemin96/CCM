@@ -6,76 +6,8 @@
 <!-- 본문 : 결과 -->
 {% block content %}
 
-{% if error %}
-    <h2>{{ error }}</h2>
-{% else %}
-    {% if result %}
-        <h1 class="inline-header">검사 결과</h1>
-    {% else %}
-        <h1 class="inline-header">매우 좋음!</h1>
-    {% endif %}
-
-    <!-- 검사 결과를 나타내는 테이블 -->
-    {%  if result %}
-    <table class="table" id="result_table">
-        <thead>
-            <tr>
-                <th>
-                    PEP8Code
-                </th>
-                <th>
-                    Line
-                </th>
-                <th>
-                    Column
-                </th>
-                <th>
-                    Text
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for res in result %}
-            <tr class="tr-result">
-                <td>
-                    {% if res.type == "W" %}
-                    <span class="label label-warning">W{{ res.code }}</span>
-                    {% elif res.type == "E" %}
-                    <span class="label label-important">E{{ res.code }}</span>
-                    {% endif %}
-                </td>
-                <td>
-                    {{ res.line }}
-                </td>
-                <td>
-                    {{ res.place }}
-                </td>
-                <td>
-                    {{ res.text }}
-                </td>
-            </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
-    {% endif %}
-
-{% endif %}
-
-{% if error %}
-<a href="/{{ back_url }}" class="btn"><i class="icon-arrow-left"></i> Back</a>
-{%  else %}
-<h2>Python CODE</h2>
-<iframe class="hidden" name="save"></iframe>
-<form class="hidden" name="original_code" action="" method="post">
-    <input type="hidden" id="orig_code" name="orig_code" value="{{ code_text }}">
-    <input type="hidden" id="orig_results" name="orig_results" value="{% for res in result -%}
-                            {{ res.type }}{{ res.code }}:{{ res.line }}:{{ res.place }}:{{ res.text }}
-                            {%- if not loop.last -%}:::{%- endif %}
-                            {%- endfor %}">
-</form>
-
 <!-- 검사 후 코드 입력기 -->
+<h1 class="inline-header">Python Code</h1>
 <form name="code_form" action="/checkresult" method="POST">
     <div class="span12">
         <label for="code">
@@ -129,8 +61,77 @@
                 document.forms['code_form'].submit();
             }
         </script>
-        <button type="submit" class="btn span3" onclick="codeSubmit()">코드 검사</button>
+        <button type="submit" class="btn btn-primary" onclick="codeSubmit()">코드 검사</button>
     </div>
 </form>
+
+<hr></hr>
+
+{% if error %}
+    <h2>{{ error }}</h2>
+{% else %}
+    {% if result %}
+        <h1 class="inline-header">세부 사항</h1>
+    {% else %}
+        <h1 class="inline-header">매우 좋음!</h1>
+    {% endif %}
+
+    <!-- 검사 결과를 나타내는 테이블 -->
+    {%  if result %}
+    <table class="table" id="result_table">
+        <thead>
+            <tr>
+                <th>
+                    PEP8Code
+                </th>
+                <th>
+                    Line
+                </th>
+                <th>
+                    Column
+                </th>
+                <th>
+                    Text
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in result %}
+            <tr class="tr-result">
+                <td>
+                    {% if res.type == "W" %}
+                    <span class="label label-warning">W{{ res.code }}</span>
+                    {% elif res.type == "E" %}
+                        <span class="label label-important">E{{ res.code }}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {{ res.line }}
+                </td>
+                <td>
+                    {{ res.place }}
+                </td>
+                <td>
+                    {{ res.text }}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    {% endif %}
+
+{% endif %}
+
+{% if error %}
+{%  else %}
+<form class="hidden" name="original_code" action="" method="post">
+    <input type="hidden" id="orig_code" name="orig_code" value="{{ code_text }}">
+    <input type="hidden" id="orig_results" name="orig_results" value="{% for res in result -%}
+                            {{ res.type }}{{ res.code }}:{{ res.line }}:{{ res.place }}:{{ res.text }}
+                            {%- if not loop.last -%}:::{%- endif %}
+                            {%- endfor %}">
+</form>
+
 {% endif %}
 {% endblock %}

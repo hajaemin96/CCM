@@ -33,6 +33,11 @@ def pep8parser(strings, temp_dict_f=template_pep8):
 
 
 def check_text(text, temp_dir, logger=None):
+    # pep8 옵션 추가
+    pep8_option_list = []
+    with open('pep8-option.txt', 'r') as f:
+        for val in f.read().splitlines():
+            pep8_option_list.append(val)    
     code_file, code_filename = tempfile.mkstemp(dir=temp_dir)
     with open(code_filename, 'w') as code_file:
         code_file.write(text.encode('utf8'))
@@ -49,10 +54,14 @@ def check_text(text, temp_dir, logger=None):
     os.remove(code_filename)
     fullResultList = pep8parser(result)
     fullResultList.sort(key=lambda x: (int(x['line']), int(x["place"])))
+    if (pep8_option_list is not None):
+        for val in pep8_option_list:
+            for idx, result in enumerate(fullResultList):
+                if (result.get('code') == val[1:]) and (result.get('type') == val[0]):
+                    fullResultList.pop(idx)
     if logger:
         logger.debug(result)
     return fullResultList
-
 
 def is_py_extension(filename):
     return ('.' in filename) and (filename.split('.')[-1] == 'py')

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
-<form name="code_form" action="/checkresult" method="POST">
+<h1 class="inline-header">Python Code</h1>
+<form name="code_form" action="/checkresult" method="POST">    
     <div class="span12">
         <label for="code">
             <input type="hidden" id="code" name="code" value="">
@@ -18,8 +19,7 @@
                 document.forms['code_form'].submit();
             }
         </script>
-        <button type="submit" class="btn span3" onclick="codeSubmit()">코드 검사</button>
+        <button type="submit" class="btn btn-primary" onclick="codeSubmit()">코드 검사</button>
     </div>
 </form>
-
 {% endblock %}

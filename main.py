@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, abort
 from checktools import check_text, is_py_extension, pep8parser, template_results
 
 app = Flask(__name__)
+app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
 @app.route("/")
 def paste_page():

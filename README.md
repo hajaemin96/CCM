@@ -1,23 +1,27 @@
-# CCM
->OpenSource CCM
+# PEP8 for CCM
+
+> 파이썬 코드의 스타일을 검사해주는 간단한 웹 프로그램 
 
 ## Required
 
-* Ubuntu ( == 18.04 )
-* GCC ( >= 7.3.x )
-* g++ ( >= 7.3.x )
-* CMake ( >= 3.x )
-* libseccomp ( >= 2.3 )
+* Python2 ( >= 2.7.16 )
 
 ## Used Library
 
-* [Argtable3](https://github.com/argtable/argtable3)
-* [libseccomp](https://github.com/seccomp/libseccomp)
+* [flask](https://www.palletsprojects.com/p/flask/)
+    * 파이썬 경량 웹 프레임워크
+* [Bootstrap](https://getbootstrap.com/)
+    * CSS 웹 프레임워크
+* [pep8](https://pep8.readthedocs.io/)
+    * PEP8 검사를 위한 라이브러리
 
 ## Build
 
-Install the required libraries on `Ubuntu` and compile them using CMake. If If you can't compile the library, check the required libraries and dependencies. `We do not accept questions or inquiries about the build or compile`
-
+```
+$ git clone https://github.com/hajaemin96/CCM
+$ cd CCM
+$ python main.py
+```
 
 ## License
 
