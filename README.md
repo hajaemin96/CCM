@@ -20,7 +20,8 @@
 ```
 $ git clone https://github.com/hajaemin96/CCM
 $ cd CCM
-$ python main.py
+$ pip2 install flask pep8
+$ python2 main.py
 ```
 
 ## License
